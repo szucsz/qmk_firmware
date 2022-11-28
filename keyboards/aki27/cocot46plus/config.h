@@ -23,8 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VENDOR_ID    0x1727
 #define PRODUCT_ID   0x0003
 #define DEVICE_VER   0x0001
-#define MANUFACTURER aki27
-#define PRODUCT      cocot46plus
+#define MANUFACTURER "aki27"
+#define PRODUCT      "cocot46plus"
 
 /* VIA */
 #define DYNAMIC_KEYMAP_LAYER_COUNT 7
