@@ -23,68 +23,120 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // Defines names for use in layer keycodes and the keymap
 enum layer_number {
-    _BASE = 0,
-    _LOWER = 1,
-    _RAISE = 2,
-    _TRACKBALL = 3
+    L_BASE   = 0,
+    L_FUN    = 1,
+    L_SYM    = 2,
+    L_MEDIA  = 3,
+    L_NUM    = 4,
+    L_NAV    = 5,
+    L_MOUSE  = 6
 };
 
+// opposite layers
+#define LO_FUN    L_NUM
+#define LO_SYM    L_NAV
+#define LO_MEDIA  L_MOUSE
+#define LO_NUM    L_FUN
+#define LO_NAV    L_SYM
+#define LO_MOUSE  L_MEDIA
 
-#define LW_BSPC LT(1,KC_BSPC)  // lower
-#define RS_SPC  LT(2,KC_SPC)   // raise
-#define DEL_ALT ALT_T(KC_DEL)
+#define SYM(k)    LT(L_SYM,k)
+#define NUM(k)    LT(L_NUM,k)
+#define FUN(k)    LT(L_FUN,k)
+#define MOUSE(k)  LT(L_MOUSE,k)
+#define NAV(k)    LT(L_NAV,k)
+#define MEDIA(k)  LT(L_MEDIA,k)
 
-#define SFT_A    SFT_T(KC_A)
-#define SFT_SCLN SFT_T(KC_SCLN)
+#define HMSHFT(k) MT(MOD_LSFT,k)
+#define HMCTL(k)  MT(MOD_LCTL,k)
+#define HMGUI(k)  MT(MOD_LGUI,k)
+#define HMALT(k)  MT(MOD_LALT,k)
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_BASE] = LAYOUT(
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-       KC_ESC,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                          KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,  KC_BSPC,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LCTL,   SFT_A,    KC_S,    KC_D,    KC_F,    KC_G,                                          KC_H,    KC_J,    KC_K,    KC_L,SFT_SCLN, KC_QUOT,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LSFT,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                                          KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, KC_MINS,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, KC_LALT, LW_BSPC,  KC_TAB,  KC_MS_BTN1,              KC_MS_BTN2,  KC_ENT,  RS_SPC,  KC_DEL,  KC_ESC,
-                                                                 KC_WH_U, KC_MS_BTN3,    KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX
-                                                            //`--------------'  `--------------'
+  [L_BASE] = LAYOUT(
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+       KC_TAB,       KC_Q,       KC_W,       KC_E,        KC_R,   KC_T,                 KC_Y,        KC_U,       KC_I,       KC_O,          KC_P, KC_BSPC,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_LCTL,HMGUI(KC_A),HMALT(KC_S),HMCTL(KC_D),HMSHFT(KC_F),   KC_G,                 KC_H,HMSHFT(KC_J),HMCTL(KC_K),HMALT(KC_L),HMGUI(KC_SCLN), KC_QUOT,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_LSFT,       KC_Z,       KC_X,       KC_C,        KC_V,   KC_B,                 KC_N,        KC_M,    KC_COMM,     KC_DOT,       KC_SLSH, KC_MINS,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+            KC_LGUI, MOUSE(KC_ESC), NAV(KC_BSPC), NUM(KC_TAB), KC_MS_BTN1,        KC_MS_BTN2,  FUN(KC_ENT),  SYM(KC_SPC), MEDIA(KC_DEL), KC_ESC,
+                                                      KC_WH_U, KC_MS_BTN3,        KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX
+                                    //`------------------------------------'    `------------------------------------'
     ),
-  [_LOWER] = LAYOUT(
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-       KC_ESC, KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, KC_PERC,                                       KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LCTL, KC_PSCR,S(KC_DEL),C(KC_INS),S(KC_INS),KC_APP,                                      KC_LCBR, KC_RCBR, KC_LBRC, KC_RBRC, KC_COLN, KC_DQUO,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LSFT,  KC_GRV, KC_TILD, KC_BSLS, KC_PIPE, CAPSWRD,                                        KC_EQL, KC_PLUS, KC_LABK, KC_RABK, KC_QUES, KC_UNDS,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, KC_LALT, KC_TRNS,  KC_TAB,   KC_MS_BTN4,             KC_MS_BTN5,  KC_ENT,   TT(3),  KC_DEL,  KC_ESC,
-                                                                 KC_WH_R, KC_MS_BTN3,    KC_WH_L, XXXXXXX, XXXXXXX, XXXXXXX
-                                                            //`--------------'  `--------------'
+  [L_FUN] = LAYOUT(
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO,  KC_F9, KC_F10, KC_F11, KC_F12, KC_NO,                                       TO(L_BASE),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO,  KC_F5,  KC_F6,  KC_F7,  KC_F8, KC_NO,                                            KC_NO, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, KC_NO,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO,  KC_F1,  KC_F2,  KC_F3,  KC_F4, KC_NO,                                       TO(LO_FUN),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+                            KC_LGUI, KC_ESC, KC_BSPC, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_TRNS, KC_SPC, KC_DEL,  KC_ESC,
+                                                     KC_WH_R, KC_MS_BTN3,         KC_WH_L, XXXXXXX, XXXXXXX, XXXXXXX
+                                    //`------------------------------------'    `------------------------------------'
     ),
-  [_RAISE] = LAYOUT(
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-       KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                          KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_BSPC,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LCTL,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                                        KC_F11, KC_LEFT,   KC_UP, KC_DOWN, KC_RGHT, KC_COLN,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      KC_LSFT,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,                                        KC_F12, KC_HOME, KC_PGUP, KC_PGDN,  KC_END, KC_MINS,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, KC_LALT,   TT(3),  KC_TAB,   KC_MS_BTN4,             KC_MS_BTN5,  KC_ENT, KC_TRNS,  KC_DEL,  KC_ESC,
-                                                                 KC_WH_R, KC_MS_BTN3,    KC_WH_L, XXXXXXX, XXXXXXX, XXXXXXX
-                                                            //`--------------'  `--------------'
+  [L_SYM] = LAYOUT(
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_TILD, KC_AMPR, KC_PIPE,  KC_DLR, KC_LCBR, KC_RCBR,                               TO(L_BASE),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_GRV,  KC_HASH, KC_EXLM,  KC_EQL,   KC_LT,   KC_GT,                                    KC_NO, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, KC_NO,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO,   KC_PERC,   KC_AT, KC_CIRC, KC_LBRC, KC_RBRC,                               TO(LO_FUN),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+                            KC_LGUI, KC_ESC, KC_BSPC, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_TRNS, KC_DEL,  KC_ESC,
+                                                     KC_WH_R, KC_MS_BTN3,         KC_WH_L, XXXXXXX, XXXXXXX, XXXXXXX
+                                    //`------------------------------------'    `------------------------------------'
     ),
-  [_TRACKBALL] = LAYOUT(
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      QK_BOOT, DB_TOGG,  EE_CLR, XXXXXXX, XXXXXXX, RGB_TOG,                                       SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15, ROT_R15, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD,                                       SCRL_MO, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-      XXXXXXX, XXXXXXX, RGB_VAD, RGB_SAD, RGB_HUD,RGB_RMOD,                                       SCRL_IN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //|-------------------------------------------------------|                                   |-------------------------------------------------------|
-                        KC_LGUI, KC_LALT, KC_TRNS,  KC_TAB,   KC_MS_BTN1,             KC_MS_BTN2,  KC_ENT, KC_TRNS,  KC_DEL,  KC_ESC,
-                                                                 KC_PGUP, KC_MS_BTN3,    KC_PGDN, XXXXXXX, XXXXXXX, XXXXXXX
-                                                            //`--------------'  `--------------'
+  [L_MEDIA] = LAYOUT(
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,                                  TO(L_BASE),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO, KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,  KC_NO,                                       KC_NO, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, KC_NO,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,                                  TO(LO_FUN),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+                            KC_LGUI, KC_ESC, KC_BSPC, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_TRNS,  KC_ESC,
+                                                     KC_WH_R, KC_MS_BTN3,         KC_WH_L, XXXXXXX, XXXXXXX, XXXXXXX
+                                    //`------------------------------------'    `------------------------------------'
+    ),
+  [L_NUM] = LAYOUT(
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(L_BASE),                             KC_NO,    KC_7,    KC_8,    KC_9, KC_LPRN, KC_RPRN,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO, KC_RGUI, KC_RALT, KC_RCTL, KC_RSFT,        KC_NO,                              KC_0,    KC_4,    KC_5,    KC_6, KC_COLN, KC_BSLS,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(LO_FUN),                           KC_PLUS,    KC_1,    KC_2,    KC_3, KC_SLSH, KC_ASTR,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+                           KC_LGUI, KC_ESC, KC_BSPC, KC_TRNS, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_ESC,
+                                                     KC_WH_R, KC_MS_BTN3,         KC_WH_L, XXXXXXX, XXXXXXX, XXXXXXX
+                                    //`------------------------------------'    `------------------------------------'
+    ),
+  [L_NAV] = LAYOUT(
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(L_BASE),                           C(KC_Y), S(KC_INS), C(KC_INS), S(KC_DEL), C(KC_Z),  KC_NO,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO, KC_RGUI, KC_RALT, KC_RCTL, KC_RSFT,        KC_NO,                           CW_TOGG,   KC_LEFT,     KC_UP,   KC_DOWN, KC_RGHT, KC_APP,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(LO_FUN),                            KC_INS,   KC_HOME,   KC_PGUP,   KC_PGDN,  KC_END,  KC_NO,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+                            KC_LGUI, KC_ESC, KC_TRNS, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_ESC,
+                                                     KC_WH_R, KC_MS_BTN3,         KC_WH_L, XXXXXXX, XXXXXXX, XXXXXXX
+                                    //`------------------------------------'    `------------------------------------'
+    ),
+  [L_MOUSE] = LAYOUT(
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      QK_BOOT, DB_TOGG,  EE_CLR, XXXXXXX, XXXXXXX, TO(L_BASE),                             SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15,  ROT_R15, XXXXXXX,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      XXXXXXX, KC_RGUI, KC_RALT, KC_RCTL, KC_RSFT,    XXXXXXX,                             SCRL_MO, RGB_VAI, RGB_SAI, RGB_HUI,  RGB_MOD, XXXXXXX,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO(LO_FUN),                             SCRL_IN, RGB_VAD, RGB_SAD, RGB_HUD, RGB_RMOD, XXXXXXX,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+                           KC_LGUI, KC_TRNS, KC_BSPC, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL, KC_ESC,
+                                                     KC_WH_R, KC_MS_BTN3,         KC_WH_L, XXXXXXX, XXXXXXX, XXXXXXX
+                                    //`------------------------------------'    `------------------------------------'
     )
 };
 
@@ -139,25 +191,40 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     int val_fst = rgblight_get_val();
 
     switch (get_highest_layer(state)) {
-    case _LOWER:
+    case L_FUN:
         rgblight_sethsv_range(HSV_BLUE, 0, 2);
-        cocot_set_scroll_mode(true);
         rgblight_set_effect_range( 2, 10);
+        cocot_set_scroll_mode(true);
         break;
-    case _RAISE:
+    case L_SYM:
         rgblight_sethsv_range(HSV_RED, 0, 2);
-        cocot_set_scroll_mode(true);
         rgblight_set_effect_range( 2, 10);
+        cocot_set_scroll_mode(true);
         break;
-    case _TRACKBALL:
-        rgblight_sethsv_range(hue_fst, sat_fst, val_fst, 0, 2);
-        rgblight_set_effect_range( 0, 12);
-        cocot_set_scroll_mode(false);
+    case L_MEDIA:
+        rgblight_sethsv_range(HSV_WHITE, 0, 2);
+        rgblight_set_effect_range( 2, 10);
+        cocot_set_scroll_mode(true);
+        break;
+    case L_NUM:
+        rgblight_sethsv_range(HSV_GREEN, 0, 2);
+        rgblight_set_effect_range( 2, 10);
+        cocot_set_scroll_mode(true);
+        break;
+    case L_NAV:
+        rgblight_sethsv_range(HSV_PURPLE, 0, 2);
+        rgblight_set_effect_range( 2, 10);
+        cocot_set_scroll_mode(true);
+        break;
+    case L_MOUSE:
+        rgblight_sethsv_range(HSV_CYAN, 0, 2);
+        rgblight_set_effect_range( 2, 10);
+        cocot_set_scroll_mode(true);
         break;
     default:
         rgblight_sethsv_range(hue_fst, sat_fst, val_fst, 0, 2);
-        cocot_set_scroll_mode(false);
         rgblight_set_effect_range( 0, 12);
+        cocot_set_scroll_mode(false);
         break;
     }
     return state;

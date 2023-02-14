@@ -253,25 +253,25 @@ void oled_write_layer_state(void) {
 
     switch (get_highest_layer(layer_state | default_layer_state)) {
         case 0:
-            oled_write_P(PSTR("Base "), false);
+            oled_write_P(PSTR("BASE "), false);
             break;
         case 1:
-            oled_write_P(PSTR("Lower"), false);
+            oled_write_P(PSTR("FUN  "), false);
             break;
         case 2:
-            oled_write_P(PSTR("Raise"), false);
+            oled_write_P(PSTR("SYM  "), false);
             break;
         case 3:
-            oled_write_P(PSTR("Mouse"), false);
+            oled_write_P(PSTR("MEDIA"), false);
             break;
         case 4:
-            oled_write_P(PSTR("L4   "), false);
+            oled_write_P(PSTR("NUM  "), false);
             break;
         case 5:
-            oled_write_P(PSTR("L5   "), false);
+            oled_write_P(PSTR("NAV  "), false);
             break;
         case 6:
-            oled_write_P(PSTR("L6   "), false);
+            oled_write_P(PSTR("MOUSE"), false);
             break;
         default:
             oled_write_P(PSTR("Undef"), false);
