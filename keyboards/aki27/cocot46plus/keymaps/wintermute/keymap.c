@@ -96,13 +96,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [L_MEDIA] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      G(A(KC_K)), KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,                               TO(L_BASE),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
+      KC_F13,     KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,                               TO(L_BASE),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       KC_NO,    KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,  KC_NO,                                    KC_NO, KC_RSFT, KC_RCTL, KC_RALT, KC_RGUI, KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,                             TO(LO_MEDIA),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-                          KC_LGUI, KC_MSTP, KC_MPLY, KC_MUTE, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_TRNS, KC_F13,
+                          KC_LGUI, KC_MSTP, KC_MPLY, KC_MUTE, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_TRNS,  KC_ESC,
                                                      KC_VOLD, KC_MS_BTN3,         KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX
                                //`------------------------------------' O O O  O O X `------------------------------------'
     ),
@@ -122,11 +122,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
   [L_NAV] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO,   KC_NO,     KC_NO,     KC_NO,     KC_NO, TO(L_BASE),                       C(KC_Y), S(KC_INS), C(KC_INS), S(KC_DEL), C(KC_Z),  KC_NO,
+      C(KC_F11), KC_NO,     KC_NO,     KC_NO,     KC_NO, TO(L_BASE),                     C(KC_Y), S(KC_INS), C(KC_INS), S(KC_DEL), C(KC_Z),  KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO, KC_RGUI,   KC_RALT,   KC_RCTL,   KC_RSFT,      KC_NO,                       CW_TOGG,   KC_LEFT,     KC_UP,   KC_DOWN, KC_RGHT, KC_APP,
+      KC_NO,   KC_RGUI,   KC_RALT,   KC_RCTL,   KC_RSFT,      KC_NO,                     CW_TOGG,   KC_LEFT,     KC_UP,   KC_DOWN, KC_RGHT, KC_APP,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO,   KC_NO, S(KC_DEL), C(KC_INS), S(KC_INS), TO(LO_NAV),                        KC_INS,   KC_HOME,   KC_PGUP,   KC_PGDN,  KC_END,  KC_NO,
+      KC_NO,     KC_NO, S(KC_DEL), C(KC_INS), S(KC_INS), TO(LO_NAV),                      KC_INS,   KC_HOME,   KC_PGUP,   KC_PGDN,  KC_END,  KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                             KC_LGUI, KC_ESC, KC_TRNS, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_ESC,
                                                      KC_WH_L, KC_MS_BTN3,         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
