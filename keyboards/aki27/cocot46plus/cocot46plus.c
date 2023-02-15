@@ -271,7 +271,7 @@ void oled_write_layer_state(void) {
             oled_write_P(PSTR("NAV  "), false);
             break;
         case 6:
-            oled_write_P(PSTR("MOUSE"), false);
+            oled_write_P(PSTR("META "), false);
             break;
         default:
             oled_write_P(PSTR("Undef"), false);
