@@ -113,9 +113,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(L_BASE),                             KC_NO,    KC_7,    KC_8,    KC_9, KC_LPRN, KC_RPRN,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,        KC_NO,                              KC_0,    KC_4,    KC_5,    KC_6, KC_COLN, KC_BSLS,
+      KC_NO, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,        KC_NO,                              KC_0,    KC_1,    KC_2,    KC_3, KC_COLN, KC_BSLS,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(LO_NUM),                           KC_PLUS,    KC_1,    KC_2,    KC_3, KC_SLSH, KC_ASTR,
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(LO_NUM),                           KC_PLUS,    KC_4,    KC_5,    KC_6, KC_SLSH, KC_ASTR,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                            KC_LGUI, KC_ESC, KC_BSPC, KC_TRNS, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_ESC,
                                                      KC_WH_L, KC_MS_BTN3,         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
