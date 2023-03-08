@@ -57,7 +57,7 @@ typedef union {
 extern cocot_config_t cocot_config;
 extern uint16_t cpi_array[];
 extern uint16_t scrl_div_array[];
-extern uint16_t angle_array[];
+extern int16_t angle_array[];
 
 enum cocot_keycodes {
 
