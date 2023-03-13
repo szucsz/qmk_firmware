@@ -130,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO,     KC_NO, S(KC_DEL), C(KC_INS), S(KC_INS), TO(LO_NAV),                      KC_INS,   KC_HOME,   KC_PGUP,   KC_PGDN,  KC_END,  KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                             KC_LGUI, KC_ESC, KC_TRNS, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_LALT,
-                                                       KC_UP, KC_MS_BTN3,         KC_DOWN, XXXXXXX, XXXXXXX, XXXXXXX
+                                                     KC_DOWN, KC_MS_BTN3,         KC_UP, XXXXXXX, XXXXXXX, XXXXXXX
                                //`------------------------------------' O X O  O O O `------------------------------------'
     ),
   [L_META] = LAYOUT(
