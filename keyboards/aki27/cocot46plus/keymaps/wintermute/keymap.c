@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(LO_NUM),                           KC_PLUS,    KC_4,    KC_5,    KC_6, KC_SLSH, KC_ASTR,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                            KC_LGUI, KC_ESC, KC_BSPC, KC_TRNS, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_LALT,
-                                                     KC_WH_L, KC_MS_BTN3,         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
+                                                     KC_LEFT, KC_MS_BTN3,         KC_RGHT, XXXXXXX, XXXXXXX, XXXXXXX
                                //`------------------------------------' O O X  O O O `------------------------------------'
     ),
   [L_NAV] = LAYOUT(
@@ -130,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO,     KC_NO, S(KC_DEL), C(KC_INS), S(KC_INS), TO(LO_NAV),                      KC_INS,   KC_HOME,   KC_PGUP,   KC_PGDN,  KC_END,  KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                             KC_LGUI, KC_ESC, KC_TRNS, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_LALT,
-                                                     KC_WH_L, KC_MS_BTN3,         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
+                                                       KC_UP, KC_MS_BTN3,         KC_DOWN, XXXXXXX, XXXXXXX, XXXXXXX
                                //`------------------------------------' O X O  O O O `------------------------------------'
     ),
   [L_META] = LAYOUT(
