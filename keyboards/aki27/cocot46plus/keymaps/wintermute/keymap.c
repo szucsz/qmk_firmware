@@ -35,6 +35,11 @@ enum layer_number {
     L_META   = 6
 };
 
+enum custom_keycodes {
+    PREV_WINDOW = QK_KB_7,
+    NEXT_WINDOW,
+};
+
 #define SYM(k)    LT(L_SYM,k)
 #define NUM(k)    LT(L_NUM,k)
 #define FUN(k)    LT(L_FUN,k)
@@ -124,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     C(KC_Y), C(KC_Z), S(KC_DEL),  C(KC_INS), S(KC_INS),  TO(L_NAV),                      KC_INS,     KC_HOME,   KC_PGUP,     KC_PGDN,      KC_END,  KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                             KC_LGUI, KC_ESC, KC_TRNS, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_LALT,
-                                                     KC_DOWN, KC_MS_BTN3,         KC_UP, XXXXXXX, XXXXXXX, XXXXXXX
+                                                 PREV_WINDOW, KC_MS_BTN3,         NEXT_WINDOW, XXXXXXX, XXXXXXX, XXXXXXX
     ),
   //`------' X O O  O O O `------'
   [L_META] = LAYOUT(
@@ -139,6 +144,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                      KC_WH_L, KC_MS_BTN3,         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
     )
 };
+
+bool is_alt_tab_active = false;
+uint16_t alt_tab_timer = 0;
 
 keyevent_t encoder1_ccw = {
     .key = (keypos_t){.row = 4, .col = 2},
@@ -166,6 +174,37 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
     return true;
 }
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) { // This will do most of the grunt work with the keycodes.
+        case NEXT_WINDOW:
+            if (record->event.pressed) {
+                if (!is_alt_tab_active) {
+                    is_alt_tab_active = true;
+                    register_code(KC_LALT);
+                }
+                alt_tab_timer = timer_read();
+                register_code(KC_TAB);
+            } else {
+                unregister_code(KC_TAB);
+            }
+            break;
+        case PREV_WINDOW:
+            if (record->event.pressed) {
+                if (!is_alt_tab_active) {
+                    is_alt_tab_active = true;
+                    register_code(KC_LALT);
+                }
+                alt_tab_timer = timer_read();
+                register_code(KC_LSFT);
+                register_code(KC_TAB);
+            } else {
+                unregister_code(KC_TAB);
+                unregister_code(KC_LSFT);
+            }
+            break;
+    }
+    return true;
+}
 
 void matrix_scan_user(void) {
 
@@ -181,6 +220,10 @@ void matrix_scan_user(void) {
         action_exec(encoder1_cw);
     }
 
+    if (is_alt_tab_active && timer_elapsed(alt_tab_timer) > 1250) {
+        unregister_code(KC_LALT);
+        is_alt_tab_active = false;
+    }
 }
 
 
