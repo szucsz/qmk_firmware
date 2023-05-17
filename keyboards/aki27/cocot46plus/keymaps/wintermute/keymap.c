@@ -32,7 +32,8 @@ enum layer_number {
     L_MEDIA  = 3,
     L_NUM    = 4,
     L_NAV    = 5,
-    L_META   = 6
+    L_META   = 6,
+    L_SWITCH = 7
 };
 
 enum custom_keycodes {
@@ -55,6 +56,7 @@ enum custom_keycodes {
 #define CA(k)     C(A(k))
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  //`------' O O O     O O O `------'
   [L_BASE] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
         KC_ESC,      KC_Q,      KC_W,      KC_E,      KC_R,   KC_T,                    KC_Y,        KC_U,       KC_I,       KC_O,          KC_P, KC_BSPC,
@@ -64,12 +66,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_LSFT,      KC_Z,      KC_X,      KC_C,      KC_V,   KC_B,                    KC_N,        KC_M,    KC_COMM,     KC_DOT,       KC_SLSH, KC_MINS,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
             KC_LGUI, META(KC_ESC), NAV(KC_BSPC), NUM(KC_TAB), KC_MS_BTN1,        KC_MS_BTN2,  FUN(KC_ENT),  SYM(KC_SPC), MEDIA(KC_DEL), KC_LALT,
-                                                      KC_WH_U, KC_MS_BTN3,        KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX
+                                                      KC_WH_U, MO(L_SWITCH),     KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX
                                //`------------------------------------' O O O  O O O `------------------------------------'
     ),
 
 // right hand activated layers
-  //`------' O O O  X O O `------'
+  //`------' O O O     X O O `------'
   [L_FUN] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       KC_F13, KC_F14, KC_F15, KC_F16, KC_F17, KC_F18,                                       TO(L_BASE),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
@@ -79,9 +81,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_F7,  KC_F8,  KC_F9, KC_F10, KC_F11, KC_F12,                                        TO(L_NUM),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                             KC_LGUI, KC_ESC, KC_BSPC, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_TRNS, KC_SPC, KC_DEL,  KC_LALT,
-                                                     KC_WH_L, KC_MS_BTN3,         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
+                                                     KC_WH_L, TO(L_BASE),         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
     ),
-  //`------' O O O  O X O `------'
+  //`------' O O O     O X O `------'
   [L_SYM] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       KC_TILD, KC_AMPR, KC_PIPE,  KC_DLR, KC_LCBR, KC_RCBR,                               TO(L_BASE),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
@@ -91,9 +93,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO,   KC_PERC,   KC_AT, KC_CIRC, KC_LBRC, KC_RBRC,                                TO(L_NAV),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                             KC_LGUI, KC_ESC, KC_BSPC, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_TRNS, KC_DEL,  KC_LALT,
-                                                     KC_WH_L, KC_MS_BTN3,         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
+                                                     KC_WH_L, TO(L_BASE),         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
     ),
-  //`------' O O O  O O X `------'
+  //`------' O O O     O O X `------'
   [L_MEDIA] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,                               TO(L_BASE),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
@@ -103,11 +105,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,                               TO(L_META),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                           KC_LGUI, KC_MSTP, KC_MPLY, KC_MUTE, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_TRNS,  KC_LALT,
-                                                     KC_VOLD, KC_MS_BTN3,         KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX
+                                                     KC_VOLD, TO(L_BASE),         KC_VOLU, XXXXXXX, XXXXXXX, XXXXXXX
     ),
 
 // left hand activated
-  //`------' O O X  O O O `------'
+  //`------' O O X     O O O `------'
   [L_NUM] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   TO(L_BASE),                             KC_NO,    KC_7,    KC_8,    KC_9, KC_LPRN, KC_RPRN,
@@ -117,21 +119,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    TO(L_FUN),                           KC_PLUS,    KC_4,    KC_5,    KC_6, KC_SLSH, KC_ASTR,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                            KC_LGUI, KC_ESC, KC_BSPC, KC_TRNS, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_LALT,
-                                                     KC_LEFT, KC_MS_BTN3,         KC_RGHT, XXXXXXX, XXXXXXX, XXXXXXX
+                                                     KC_LEFT, TO(L_BASE),         KC_RGHT, XXXXXXX, XXXXXXX, XXXXXXX
     ),
-  //`------' O X O  O O O `------'
+  //`------' O X O     O O O `------'
   [L_NAV] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO, C(KC_W),C(KC_PGUP), C(KC_PGDN),     KC_NO, TO(L_BASE),                       KC_NO, CA(KC_LEFT), CA(KC_UP), CA(KC_DOWN), CA(KC_RGHT),  KC_NO,
+      KC_NO, C(KC_W),C(KC_PGUP), C(KC_PGDN),   C(KC_T), TO(L_BASE),                       KC_NO, CA(KC_LEFT), CA(KC_UP), CA(KC_DOWN), CA(KC_RGHT),  KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       KC_NO, KC_LGUI,   KC_LALT,    KC_LCTL,   KC_LSFT,      KC_NO,                     CW_TOGG,     KC_LEFT,     KC_UP,     KC_DOWN,     KC_RGHT, KC_APP,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
     C(KC_Y), C(KC_Z), S(KC_DEL),  C(KC_INS), S(KC_INS),  TO(L_SYM),                      KC_INS,     KC_HOME,   KC_PGUP,     KC_PGDN,      KC_END,  KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                             KC_LGUI, KC_ESC, KC_TRNS, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_LALT,
-                                                 PREV_WINDOW, KC_MS_BTN3,         NEXT_WINDOW, XXXXXXX, XXXXXXX, XXXXXXX
+                                                 PREV_WINDOW, TO(L_BASE),         NEXT_WINDOW, XXXXXXX, XXXXXXX, XXXXXXX
     ),
-  //`------' X O O  O O O `------'
+  //`------' X O O     O O O `------'
   [L_META] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       QK_BOOT, DB_TOGG,  EE_CLR, XXXXXXX, XXXXXXX,  TO(L_BASE),                             SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15,  ROT_R15, XXXXXXX,
@@ -141,8 +143,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO(L_MEDIA),                             SCRL_IN, RGB_VAD, RGB_SAD, RGB_HUD, RGB_RMOD, XXXXXXX,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                            KC_LGUI, KC_TRNS, KC_BSPC, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL, KC_LALT,
-                                                     KC_WH_L, KC_MS_BTN3,         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
-    )
+                                                     KC_WH_L, TO(L_BASE),         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
+    ),
+  //`------' O O O  X  O O O `------'
+  [L_SWITCH] = LAYOUT(
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+                      XXXXXXX, TO(L_META), TO(L_NAV), TO(L_NUM), XXXXXXX,         XXXXXXX, TO(L_FUN), TO(L_SYM), TO(L_MEDIA), XXXXXXX,
+                                                        XXXXXXX, KC_TRNS,         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+    ),
 };
 
 bool is_alt_tab_active = false;
@@ -316,6 +330,9 @@ void oled_write_layer_state_user(void) {
             break;
         case 6:
             oled_write_P(PSTR("META "), false);
+            break;
+        case 7:
+            oled_write_P(PSTR("SWTCH"), false);
             break;
         default:
             oled_write_P(PSTR("Undef"), false);
