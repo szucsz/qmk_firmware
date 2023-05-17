@@ -278,18 +278,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         {
             report_mouse_t currentReport = pointing_device_get_report();
 
-            // どこのビットを対象にするか。 Which bits are to be targeted?
             uint8_t btn = 1 << (keycode - KC_MS_BTN1);
             
             if (record->event.pressed) {
-                // ビットORは演算子の左辺と右辺の同じ位置にあるビットを比較して、両方のビットのどちらかが「1」の場合に「1」にします。
-                // Bit OR compares bits in the same position on the left and right sides of the operator and sets them to "1" if either of both bits is "1".
                 currentReport.buttons |= btn;
                 state = CLICKING;
                 after_click_lock_movement = 30;
             } else {
-                // ビットANDは演算子の左辺と右辺の同じ位置にあるビットを比較して、両方のビットが共に「1」の場合だけ「1」にします。
-                // Bit AND compares the bits in the same position on the left and right sides of the operator and sets them to "1" only if both bits are "1" together.
                 currentReport.buttons &= ~btn;
                 enable_click_layer();
             }
@@ -298,26 +293,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             pointing_device_send();
             return false;
         }
-/*
-        case KC_MS_BTN4:
-        case KC_MS_BTN5:
-            if  (record->event.pressed) {
-                enable_click_layer();
-            }
-*/
         case SCRL_MO:
             if (record->event.pressed) {
                 state = SCROLLING;
             } else {
                 enable_click_layer();   // スクロールキーを離した時に再度クリックレイヤーを有効にする。 Enable click layer again when the scroll key is released.
             }
-         return false;
-
-         default:
+            return false;
+        /*
+        default:
             if  (record->event.pressed) {
                 disable_click_layer();
             }
-        
+        */
     }
    
     return true;
