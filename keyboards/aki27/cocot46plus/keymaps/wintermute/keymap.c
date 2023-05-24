@@ -124,11 +124,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`------' O X O     O O O `------'
   [L_NAV] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO, C(KC_W),C(KC_PGUP), C(KC_PGDN),   C(KC_T), TO(L_BASE),                       KC_NO, CA(KC_LEFT), CA(KC_UP), CA(KC_DOWN), CA(KC_RGHT),  KC_NO,
+      KC_NO,   KC_NO,   C(KC_W), C(KC_PGUP), C(KC_PGDN),   C(KC_T),                       KC_NO, CA(KC_LEFT), CA(KC_UP), CA(KC_DOWN), CA(KC_RGHT), KC_BSPC,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO, KC_LGUI,   KC_LALT,    KC_LCTL,   KC_LSFT,      KC_NO,                     CW_TOGG,     KC_LEFT,     KC_UP,     KC_DOWN,     KC_RGHT, KC_APP,
+  C(KC_GRV), KC_LGUI,   KC_LALT,    KC_LCTL,   KC_LSFT,      KC_NO,                     CW_TOGG,     KC_LEFT,     KC_UP,     KC_DOWN,     KC_RGHT,  KC_APP,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-    C(KC_Y), C(KC_Z), S(KC_DEL),  C(KC_INS), S(KC_INS),  TO(L_SYM),                      KC_INS,     KC_HOME,   KC_PGUP,     KC_PGDN,      KC_END,  KC_NO,
+    C(KC_Y), C(KC_Z), S(KC_DEL),  C(KC_INS), S(KC_INS),  TO(L_SYM),                      KC_INS,     KC_HOME,   KC_PGUP,     KC_PGDN,      KC_END,   KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                             KC_LGUI, KC_ESC, KC_TRNS, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_LALT,
                                                  PREV_WINDOW, TO(L_BASE),         NEXT_WINDOW, XXXXXXX, XXXXXXX, XXXXXXX
