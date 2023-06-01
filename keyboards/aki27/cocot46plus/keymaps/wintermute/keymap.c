@@ -124,9 +124,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`------' O X O     O O O `------'
   [L_NAV] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
- A(KC_LEFT), A(KC_RIGHT),   C(KC_W), C(KC_PGUP), C(KC_PGDN),   C(KC_T),                       KC_NO, CA(KC_LEFT), CA(KC_UP), CA(KC_DOWN), CA(KC_RGHT), KC_BSPC,
+ A(KC_LEFT), A(KC_RIGHT),   C(KC_W), C(KC_PGUP), C(KC_PGDN), C(S(KC_T)),                      KC_NO, CA(KC_LEFT), CA(KC_UP), CA(KC_DOWN), CA(KC_RGHT), KC_BSPC,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-  C(KC_GRV),     KC_LGUI,   KC_LALT,    KC_LCTL,   KC_LSFT,      KC_NO,                     CW_TOGG,     KC_LEFT,     KC_UP,     KC_DOWN,     KC_RGHT,  KC_APP,
+  C(KC_GRV),     KC_LGUI,   KC_LALT,    KC_LCTL,   KC_LSFT,      KC_F3,                     CW_TOGG,     KC_LEFT,     KC_UP,     KC_DOWN,     KC_RGHT,  KC_APP,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
     C(KC_Y),     C(KC_Z), S(KC_DEL),  C(KC_INS), S(KC_INS),  TO(L_SYM),                      KC_INS,     KC_HOME,   KC_PGUP,     KC_PGDN,      KC_END,   KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
