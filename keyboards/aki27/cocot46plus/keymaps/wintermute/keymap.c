@@ -24,14 +24,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "version.h"
 #include "cocot46plus.h"
 
-#undef COCOT_SCROLL_INV_DEFAULT
-#undef COCOT_CPI_DEFAULT
-#undef COCOT_ROTATION_DEFAULT
-
-#define COCOT_SCROLL_INV_DEFAULT 0
-#define COCOT_CPI_DEFAULT 2
-#define COCOT_ROTATION_DEFAULT 4
-
 // Defines names for use in layer keycodes and the keymap
 enum layer_number {
     L_BASE   = 0,
@@ -144,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`------' X O O     O O O `------'
   [L_META] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      QK_BOOT, DB_TOGG,  EE_CLR, XXXXXXX, XXXXXXX,     XXXXXXX,                             SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15,  ROT_R15, XXXXXXX,
+      QK_BOOT, DB_TOGG,  EE_CLR, XXXXXXX, XXXXXXX,     XXXXXXX,                             SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15,  ROT_R15, RGB_TOG,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,     XXXXXXX,                             SCRL_MO, RGB_VAI, RGB_SAI, RGB_HUI,  RGB_MOD, XXXXXXX,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
