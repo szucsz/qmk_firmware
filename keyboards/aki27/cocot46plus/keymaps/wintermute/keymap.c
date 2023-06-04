@@ -271,7 +271,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     case L_NAV:
         rgblight_sethsv_range(HSV_PURPLE, 0, 2);
         rgblight_set_effect_range( 2, 10);
-        cocot_set_scroll_mode(true);
         break;
     case L_META:
         rgblight_sethsv_range(HSV_CYAN, 0, 2);
