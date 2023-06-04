@@ -128,10 +128,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
   C(KC_GRV),     KC_LGUI,   KC_LALT,    KC_LCTL,   KC_LSFT,      KC_F3,                     CW_TOGG,     KC_LEFT,     KC_UP,     KC_DOWN,     KC_RGHT,  KC_APP,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-    C(KC_Y),     C(KC_Z), S(KC_DEL),  C(KC_INS), S(KC_INS),  TO(L_SYM),                      KC_INS,     KC_HOME,   KC_PGUP,     KC_PGDN,      KC_END,   KC_NO,
+    KC_TRNS,     C(KC_Z), S(KC_DEL),  C(KC_INS), S(KC_INS),  TO(L_SYM),                      KC_INS,     KC_HOME,   KC_PGUP,     KC_PGDN,      KC_END, SCRL_MO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                             KC_LGUI, KC_ESC, KC_TRNS, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_LALT,
-                                                 PREV_WINDOW, TO(L_BASE),         NEXT_WINDOW, XXXXXXX, XXXXXXX, XXXXXXX
+                                                     KC_WH_U, TO(L_BASE),         KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX
     ),
   //`------' X O O     O O O `------'
   [L_META] = LAYOUT(
@@ -143,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO(L_MEDIA),                             SCRL_IN, RGB_VAD, RGB_SAD, RGB_HUD, RGB_RMOD, XXXXXXX,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                            KC_LGUI, KC_TRNS, KC_BSPC, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL, KC_LALT,
-                                                     KC_WH_L, TO(L_BASE),         KC_WH_R, XXXXXXX, XXXXXXX, XXXXXXX
+                                                 PREV_WINDOW, TO(L_BASE),         NEXT_WINDOW, XXXXXXX, XXXXXXX, XXXXXXX
     ),
   //`------' O O O  X  O O O `------'
   [L_SWITCH] = LAYOUT(
@@ -185,7 +185,7 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
     }
 
-    return true;
+    return false;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
