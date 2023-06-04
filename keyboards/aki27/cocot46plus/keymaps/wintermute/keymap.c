@@ -136,11 +136,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`------' X O O     O O O `------'
   [L_META] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      QK_BOOT, DB_TOGG,  EE_CLR, XXXXXXX, XXXXXXX,  TO(L_BASE),                             SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15,  ROT_R15, RGB_TOG,
+      QK_BOOT, DB_TOGG,  EE_CLR, DM_REC1, DM_REC2,  TO(L_BASE),                             SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15,  ROT_R15, RGB_TOG,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,     XXXXXXX,                             SCRL_MO, RGB_VAI, RGB_SAI, RGB_HUI,  RGB_MOD, XXXXXXX,
+      XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,     DM_RSTP,                             SCRL_MO, RGB_VAI, RGB_SAI, RGB_HUI,  RGB_MOD, XXXXXXX,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   TO(L_NUM),                             SCRL_IN, RGB_VAD, RGB_SAD, RGB_HUD, RGB_RMOD, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, DM_PLY1, DM_PLY2,   TO(L_NUM),                             SCRL_IN, RGB_VAD, RGB_SAD, RGB_HUD, RGB_RMOD, XXXXXXX,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                            KC_LGUI, KC_TRNS, KC_BSPC, KC_TAB, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL, KC_LALT,
                                                  PREV_WINDOW, TO(L_BASE),         NEXT_WINDOW, XXXXXXX, XXXXXXX, XXXXXXX
