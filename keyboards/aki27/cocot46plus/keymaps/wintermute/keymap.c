@@ -98,7 +98,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`------' O O O     O O X `------'
   [L_MEDIA] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,                                  XXXXXXX,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
+      KC_NO,      KC_NO,   KC_NO,   KC_NO,   KC_NO,  KC_NO,                               TO(L_BASE),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       KC_NO,    KC_MPRV, KC_VOLD, KC_VOLU, KC_MNXT,  KC_NO,                                    KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
@@ -136,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`------' X O O     O O O `------'
   [L_META] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      QK_BOOT, DB_TOGG,  EE_CLR, XXXXXXX, XXXXXXX,     XXXXXXX,                             SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15,  ROT_R15, RGB_TOG,
+      QK_BOOT, DB_TOGG,  EE_CLR, XXXXXXX, XXXXXXX,  TO(L_BASE),                             SCRL_TO,  CPI_SW, SCRL_SW, ROT_L15,  ROT_R15, RGB_TOG,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,     XXXXXXX,                             SCRL_MO, RGB_VAI, RGB_SAI, RGB_HUI,  RGB_MOD, XXXXXXX,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
