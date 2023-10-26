@@ -33,7 +33,8 @@ enum layer_number {
     L_NUM    = 4,
     L_NAV    = 5,
     L_META   = 6,
-    L_SWITCH = 7
+    L_SWITCH = 7,
+    L_CURSOR = 8
 };
 
 enum custom_keycodes {
@@ -65,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
        KC_LSFT,      KC_Z,      KC_X,      KC_C,      KC_V,   KC_B,                    KC_N,        KC_M,    KC_COMM,     KC_DOT,       KC_SLSH, KC_MINS,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-            KC_LGUI, META(KC_ESC), NAV(KC_BSPC), NUM(KC_TAB), KC_MS_BTN1,        KC_MS_BTN2,  FUN(KC_ENT),  SYM(KC_SPC), MEDIA(KC_DEL), KC_LALT,
+            KC_LGUI, META(KC_ESC), NAV(KC_BSPC), NUM(KC_TAB), KC_MS_BTN1,        KC_MS_BTN2,  FUN(KC_ENT),  SYM(KC_SPC), MEDIA(KC_DEL), TO(L_CURSOR),
                                                       KC_WH_U, MO(L_SWITCH),     KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX
                                //`------------------------------------' O O O  O O O `------------------------------------'
     ),
@@ -88,7 +89,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       KC_TILD, KC_AMPR, KC_PIPE,  KC_DLR, KC_LCBR, KC_RCBR,                                  XXXXXXX,   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_GRV,  KC_HASH, KC_EXLM,  KC_EQL,   KC_LT,   KC_GT,                                    KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, KC_NO,
+      KC_GRV,  KC_HASH, KC_EXLM,  KC_EQL, KC_LPRN, KC_RPRN,                                    KC_NO, KC_LSFT, KC_LCTL, KC_LALT, KC_LGUI, KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       KC_NO,   KC_PERC,   KC_AT, KC_CIRC, KC_LBRC, KC_RBRC,                              TO(L_MEDIA),   KC_NO,   KC_NO,   KC_NO,   KC_NO, KC_NO,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
@@ -112,11 +113,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`------' O O X     O O O `------'
   [L_NUM] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,      XXXXXXX,                             KC_NO,    KC_7,    KC_8,    KC_9, KC_LPRN, KC_RPRN,
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,      XXXXXXX,                           KC_ASTR,    KC_7,    KC_8,    KC_9, KC_LPRN, KC_RPRN,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,        KC_NO,                              KC_0,    KC_1,    KC_2,    KC_3, KC_COLN, KC_BSLS,
+      KC_NO, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT,        KC_NO,                              KC_0,    KC_4,    KC_5,    KC_6, KC_COLN, KC_BSLS,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    TO(L_NAV),                           KC_PLUS,    KC_4,    KC_5,    KC_6, KC_SLSH, KC_ASTR,
+      KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,    TO(L_NAV),                           KC_PLUS,    KC_1,    KC_2,    KC_3, KC_SLSH, KC_MINS,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                            KC_LGUI, KC_ESC, KC_BSPC, KC_TRNS, KC_MS_BTN1,         KC_MS_BTN2,  KC_ENT, KC_SPC, KC_DEL,  KC_LALT,
                                                      KC_LEFT, TO(L_BASE),         KC_RGHT, XXXXXXX, XXXXXXX, XXXXXXX
@@ -155,6 +156,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                       XXXXXXX, TO(L_META), TO(L_NAV), TO(L_NUM), XXXXXXX,         XXXXXXX, TO(L_FUN), TO(L_SYM), TO(L_MEDIA), XXXXXXX,
+                                                        XXXXXXX, KC_TRNS,         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+    ),
+  //`------' O O O  X  O O O `------'
+  [L_CURSOR] = LAYOUT(
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      XXXXXXX,  XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME,  KC_END, KC_PGUP,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      XXXXXXX,  KC_LGUI,   KC_LALT,   KC_LCTL,   KC_LSFT,   KC_F3,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_UP, KC_PGDN,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+      XXXXXXX,  C(KC_Z), S(KC_DEL), C(KC_INS), S(KC_INS), XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT,
+  //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
+                      XXXXXXX,    XXXXXXX, TO(L_BASE), XXXXXXX,  XXXXXXX,         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, TO(L_BASE),
                                                         XXXXXXX, KC_TRNS,         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     ),
 };
@@ -271,6 +284,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
         cocot_set_scroll_mode(true);
         break;
     case L_NAV:
+    case L_CURSOR:
         rgblight_sethsv_range(HSV_PURPLE, 0, 2);
         rgblight_set_effect_range( 2, 10);
         break;
@@ -334,6 +348,9 @@ void oled_write_layer_state_user(void) {
             break;
         case 7:
             oled_write_P(PSTR("SWTCH"), false);
+            break;
+        case 8:
+            oled_write_P(PSTR("CRSR "), false);
             break;
         default:
             oled_write_P(PSTR("Undef"), false);
