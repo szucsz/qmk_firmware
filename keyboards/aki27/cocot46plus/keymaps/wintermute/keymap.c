@@ -164,12 +164,14 @@ uint16_t alt_tab_timer = 0;
 
 keyevent_t encoder1_ccw = {
     .key = (keypos_t){.row = 4, .col = 2},
-    .pressed = false
+    .pressed = false,
+    .type = KEY_EVENT
 };
 
 keyevent_t encoder1_cw = {
     .key = (keypos_t){.row = 4, .col = 5},
-    .pressed = false
+    .pressed = false,
+    .type = KEY_EVENT
 };
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
@@ -222,13 +224,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void matrix_scan_user(void) {
 
-    if (IS_PRESSED(encoder1_ccw)) {
+    if (IS_KEYEVENT(encoder1_ccw)) {
         encoder1_ccw.pressed = false;
         encoder1_ccw.time = (timer_read() | 1);
         action_exec(encoder1_ccw);
     }
 
-    if (IS_PRESSED(encoder1_cw)) {
+    if (IS_KEYEVENT(encoder1_cw)) {
         encoder1_cw.pressed = false;
         encoder1_cw.time = (timer_read() | 1);
         action_exec(encoder1_cw);
