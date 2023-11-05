@@ -61,11 +61,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`------' O O O     O O O `------'
   [L_BASE] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-        KC_ESC,      KC_Q,      KC_W,      KC_E,      KC_R,   KC_T,                    KC_Y,        KC_U,       KC_I,       KC_O,          KC_P, KC_BSPC,
+        KC_ESC,      KC_Q,       KC_W,       KC_E,       KC_R,   KC_T,                 KC_Y,        KC_U,       KC_I,       KC_O,          KC_P, KC_BSPC,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-       KC_LCTL, HMG(KC_A), HMA(KC_S), HMC(KC_D), HMS(KC_F),   KC_G,                    KC_H,   HMS(KC_J),  HMC(KC_K),  HMA(KC_L),  HMG(KC_SCLN), KC_QUOT,
+       KC_LCTL, HMG(KC_A),  HMA(KC_S),  HMC(KC_D),  HMS(KC_F),   KC_G,                 KC_H,   HMS(KC_J),  HMC(KC_K),  HMA(KC_L),  HMG(KC_SCLN), KC_QUOT,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-       KC_LSFT,      KC_Z,      KC_X,      KC_C,      KC_V,   KC_B,                    KC_N,        KC_M,    KC_COMM,     KC_DOT,       KC_SLSH, KC_MINS,
+       KC_LSFT,      KC_Z, LT(0,KC_X), LT(0,KC_C), LT(0,KC_V),   KC_B,                 KC_N,        KC_M,    KC_COMM,     KC_DOT,       KC_SLSH, KC_MINS,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
             KC_LGUI, META(KC_ESC), NAV(KC_BSPC), NUM(KC_TAB), KC_MS_BTN1,        KC_MS_BTN2,  FUN(KC_ENT),  SYM(KC_SPC), MEDIA(KC_DEL), TO(L_CURSOR),
                                                       KC_WH_U, MO(L_SWITCH),     KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX
@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`------' O X O     O O O `------'
   [L_NAV] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
- A(KC_LEFT), A(KC_RIGHT),   C(KC_W), C(KC_PGUP), C(KC_PGDN), C(S(KC_T)),                      KC_NO, SA(KC_LEFT), SA(KC_UP), SA(KC_DOWN), SA(KC_RGHT), KC_BSPC,
+ A(KC_LEFT), A(KC_RIGHT),   C(KC_W), C(KC_PGUP), C(KC_PGDN), C(S(KC_T)),                    XXXXXXX, SA(KC_LEFT), SA(KC_UP), SA(KC_DOWN), SA(KC_RGHT), KC_BSPC,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
   C(KC_GRV),     KC_LGUI,   KC_LALT,    KC_LCTL,   KC_LSFT,       KC_F3,                    CW_TOGG,     KC_LEFT,     KC_UP,     KC_DOWN,     KC_RGHT,  KC_APP,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
@@ -162,9 +162,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //`------' O O O  X  O O O `------'
   [L_CURSOR] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-       KC_ESC,  XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME,  KC_END, KC_PGUP,
+       KC_ESC,  C(KC_Q),   C(KC_W), C(KC_PGUP), C(KC_PGDN), C(S(KC_T)),                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME,  KC_ESC,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      XXXXXXX,  KC_LGUI,   KC_LALT,   KC_LCTL,   KC_LSFT,   KC_F3,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_UP, KC_PGDN,
+      C(KC_A),  KC_LGUI,   KC_LALT,   KC_LCTL,   KC_LSFT,   KC_F3,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_UP,  KC_ENT,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
       XXXXXXX,  C(KC_Z), S(KC_DEL), C(KC_INS), S(KC_INS), XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
@@ -232,6 +232,24 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_LSFT);
             }
             break;
+        case LT(0,KC_X):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(C(KC_X)); // Intercept hold function to send Ctrl-X
+                return false;
+            }
+            return true;             // Return true for normal processing of tap keycode
+        case LT(0,KC_C):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(C(KC_C)); // Intercept hold function to send Ctrl-C
+                return false;
+            }
+            return true;             // Return true for normal processing of tap keycode
+        case LT(0,KC_V):
+            if (!record->tap.count && record->event.pressed) {
+                tap_code16(C(KC_V)); // Intercept hold function to send Ctrl-V
+                return false;
+            }
+            return true;             // Return true for normal processing of tap keycode
     }
     return true;
 }
