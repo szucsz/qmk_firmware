@@ -159,14 +159,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                       XXXXXXX, TO(L_META), TO(L_NAV), TO(L_NUM), XXXXXXX,         XXXXXXX, TO(L_FUN), TO(L_SYM), TO(L_MEDIA), XXXXXXX,
                                                         XXXXXXX, KC_TRNS,         XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
     ),
-  //`------' O O O  X  O O O `------'
+  //`------' O O O  O  O O O `------'
   [L_CURSOR] = LAYOUT(
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-       KC_ESC,  C(KC_Q),   C(KC_W), C(KC_PGUP), C(KC_PGDN), C(S(KC_T)),                 XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME,  KC_ESC,
+       KC_ESC,  C(KC_Q),   C(KC_W), C(KC_PGUP), C(KC_PGDN), C(S(KC_T)),                 XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME,  KC_DEL, KC_BSPC,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      C(KC_A),  KC_LGUI,   KC_LALT,   KC_LCTL,   KC_LSFT,   KC_F3,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,   KC_UP,  KC_ENT,
+      XXXXXXX,  C(KC_A),   KC_LALT,    KC_LCTL,    KC_LSFT,    KC_F3,                   XXXXXXX, XXXXXXX, XXXXXXX,  KC_END,   KC_UP,  KC_ENT,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
-      XXXXXXX,  C(KC_Z), S(KC_DEL), C(KC_INS), S(KC_INS), XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT,
+      XXXXXXX,  C(KC_Z), S(KC_DEL),  C(KC_INS),  S(KC_INS),  XXXXXXX,                   XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT,
   //|------------------------------------------------------------------|            |------------------------------------------------------------------------|
                       KC_LGUI,    KC_ESC,  KC_BSPC,   KC_TAB, KC_MS_BTN1,         KC_MS_BTN2, KC_ENT, KC_SPC, KC_DEL,  TO(L_BASE),
                                                      KC_WH_U, TO(L_BASE),         KC_WH_D, XXXXXXX, XXXXXXX, XXXXXXX
